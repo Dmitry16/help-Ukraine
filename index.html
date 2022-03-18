@@ -231,31 +231,85 @@
         <div class="contact-block">
           <h2>Cargo details</h2>
           <p>Fill the form. It will help us to manage all transports. Read also all instructions above before sending transport.</p>
-          <form id="contactForm">
+          <!-- form id="contactForm" target="iframe" onsubmit="return postToGoogle();" -->
+          <form id="contactForm" target="iframe"
+            action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSdAAM6SIzeppaiZVGoq-R5sTA7bt32t5rQj0PiV9gbrmrM5kA/formResponse"
+            method="post"
+          >
             <div class="row">
-              <div class="col-md-6">
+              <div class="col-md-3">
                 <div class="form-group">
-                  <input type="text" class="form-control" id="name" name="name" placeholder="Name" required data-error="Please enter your name">
+                  <input type="text" class="form-control" id="organisationName"
+                    name="entry.1120286520" data-name="organisationName"
+                    placeholder="Organisation name" required data-error="Please enter your name"
+                  >
                   <div class="help-block with-errors"></div>
                 </div>                                 
               </div>
-              <div class="col-md-6">
+              <div class="col-md-3">
                 <div class="form-group">
-                  <input type="text" placeholder="Email" id="email" class="form-control" name="email" required data-error="Please enter your email">
+                  <input type="text" placeholder="Contact person name" id="contactPerson" class="form-control"
+                    name="entry.124618937" data-name="contactPerson"
+                    required data-error="Please enter contact person"
+                  >
                   <div class="help-block with-errors"></div>
                 </div> 
               </div>
-               <div class="col-md-12">
+              <div class="col-md-3">
                 <div class="form-group">
-                  <input type="text" placeholder="Subject" id="msg_subject" class="form-control" required data-error="Please enter your subject">
+                  <input type="text" placeholder="Phone number" id="phoneNumber" class="form-control" required data-error="Please enter your subject"
+                    name="entry.2060837920" data-name="phoneNumber"
+                  >
+                  <div class="help-block with-errors"></div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <input type="text" placeholder="Email" id="email" class="form-control" required data-error="Please enter your subject"
+                    name="entry.299921223" data-name="email"
+                  >
+                  <div class="help-block with-errors"></div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="driverName"
+                    name="entry.1048162980" data-name="driverName"
+                    placeholder="Driver name and surname" required data-error="Please enter driver name"
+                  >
+                  <div class="help-block with-errors"></div>
+                </div>                                 
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <input type="text" placeholder="Driver phone number" id="driverPhoneNumber" class="form-control"
+                    name="entry.604989816" data-name="driverPhoneNumber"
+                    required data-error="Please enter driver phone number"
+                  >
+                  <div class="help-block with-errors"></div>
+                </div> 
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <input type="date" placeholder="Departure date" id="departureDate" class="form-control" required data-error="Please enter departure date"
+                    name="entry.366275644" data-name="departureDate"
+                  >
+                  <div class="help-block with-errors"></div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <input type="date" placeholder="Arrival date" id="arrivalDate" class="form-control" required data-error="Please enter your subject"
+                    name="entry.1678365072" data-name="arrivalDate"
+                  >
                   <div class="help-block with-errors"></div>
                 </div>
               </div>
               <div class="col-md-12">
-                <div class="form-group"> 
+                <!-- div class="form-group"> 
                   <textarea class="form-control" id="message" placeholder="Your Message" rows="5" data-error="Write your message" required></textarea>
                   <div class="help-block with-errors"></div>
-                </div>
+                </div -->
                 <div class="submit-button">
                   <button class="btn btn-common" id="submit" type="submit">Send Message</button>
                   <div id="msgSubmit" class="h3 text-center hidden"></div> 
@@ -268,6 +322,8 @@
       </div>
     </section>
     <!-- Counter Area End-->
+
+    <iframe id="iframe" name="iframe"></iframe>
 
     <!-- Contact Section Start -->
     <section id="contact" class="section-padding">      
@@ -403,6 +459,48 @@
     <script src="assets/js/form-validator.min.js"></script>
     <script src="assets/js/contact-form-script.min.js"></script>
     <script src="assets/js/map.js"></script>
+
+<script type="text/javascript">
+  document.getElementById('contactForm').target = 'iframe';
+  let iframe = document.getElementById('iframe');
+
+  if (iframe) {
+    iframe.onload = function () {
+      let field1 = $("#organisationName").val();
+      let field2 = $("#contactPerson").val();
+      let field3 = $("#phoneNumber").val();
+      let field4 = $("#email").val();
+      let field5 = $("#driverName").val();
+      let field6 = $("#driverPhoneNumber").val();
+      let field7 = $("#departureDate").val();
+      let field8 = $("#arrivalDate").val();
+
+      $.ajax({
+        url: "https://docs.google.com/forms/u/0/d/e/1FAIpQLSdAAM6SIzeppaiZVGoq-R5sTA7bt32t5rQj0PiV9gbrmrM5kA/formResponse",
+          
+        data: {
+          "entry.1120286520": field1,
+          "entry.124618937": field2,
+          "entry.2060837920": field3,
+          "entry.299921223": field4,
+          "entry.1048162980": field5,
+          "entry.604989816": field6,
+          "entry.366275644": field7,
+          "entry.1678365072": field8,
+        },
+        type: "POST",
+        dataType: "xml",
+        success: function (d) {
+          $('#contactForm').trigger('reset');
+        },
+        error: function (x, y, z) {
+          $('#contactForm').trigger('reset');
+        }
+      });
+      return false;
+    }
+  }
+</script>
       
   </body>
 </html>
