@@ -299,8 +299,32 @@
               </div>
               <div class="col-md-3">
                 <div class="form-group">
-                  <input type="date" placeholder="Arrival date" id="arrivalDate" class="form-control" required data-error="Please enter your subject"
+                  <input type="date" placeholder="Arrival date" id="arrivalDate" class="form-control" required data-error="Please enter arrival date"
                     name="entry.1678365072" data-name="arrivalDate"
+                  >
+                  <div class="help-block with-errors"></div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <input type="text" placeholder="Arrival time (9am - 3pm)" id="arrivalTime" class="form-control" required data-error="Please enter arrival time"
+                    name="entry.1131935088" data-name="arrivalTime"
+                  >
+                  <div class="help-block with-errors"></div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <input type="text" placeholder="Vehicle Registration Number" id="vehicleRegistrationNumber" class="form-control" required data-error="Please enter vehicle registration number"
+                    name="entry.1723190947" data-name="vehicleRegistrationNumber"
+                  >
+                  <div class="help-block with-errors"></div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <input type="text" placeholder="Trailer Registration Number" id="trailerRegistrationNumber" class="form-control" required data-error="Please enter vehicle registration number"
+                    name="entry.1504241797" data-name="trailerRegistrationNumber"
                   >
                   <div class="help-block with-errors"></div>
                 </div>
@@ -313,7 +337,7 @@
                 <div class="submit-button">
                   <button class="btn btn-common" id="submit" type="submit">Send Message</button>
                   <div id="msgSubmit" class="h3 text-center hidden"></div> 
-                  <div class="clearfix"></div> 
+                  <div class="clearfix"></div>
                 </div>
               </div>
             </div>            
@@ -474,6 +498,9 @@
       let field6 = $("#driverPhoneNumber").val();
       let field7 = $("#departureDate").val();
       let field8 = $("#arrivalDate").val();
+      let field9 = $("#arrivalTime").val();
+      let field10 = $("#vehicleRegistrationNumber").val();
+      let field11 = $("#trailerRegistrationNumber").val();
 
       $.ajax({
         url: "https://docs.google.com/forms/u/0/d/e/1FAIpQLSdAAM6SIzeppaiZVGoq-R5sTA7bt32t5rQj0PiV9gbrmrM5kA/formResponse",
@@ -487,6 +514,9 @@
           "entry.604989816": field6,
           "entry.366275644": field7,
           "entry.1678365072": field8,
+          "entry.1131935088": field9,
+          "entry.1723190947": field10,
+          "entry.1504241797": field11,
         },
         type: "POST",
         dataType: "xml",
