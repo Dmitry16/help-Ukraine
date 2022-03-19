@@ -1135,8 +1135,7 @@ a:not([href]):not([tabindex]):focus, a:not([href]):not([tabindex]):hover {
 
 .remove {
   color: red;
-  background-color: #ffffff;
-  width: 25px;
+  background-color: none;
   margin: 3px 20px;
   border: 1px solid red;
 }
