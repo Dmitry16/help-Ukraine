@@ -533,7 +533,7 @@
 
 <script type="text/javascript">
 
-  function onRemove() {
+  function onRemoveProduct() {
     $(document).on("click", ".remove", function() {
        $(this).parent().remove(); 
     });  
@@ -550,15 +550,16 @@
 
     $('#productsList').append(`
       <li class="productData">${typeProduct}: ${palletsNumber} pallets, ${palletWeight} kg 1 plt
-        <button class="remove" onclick="onRemove()">cancel</button>
+        <button class="remove" onclick="onRemoveProduct()">cancel</button>
       </li>
     `)
   }
 
   $('#submit').click(function() {
     let productsData = '';
+
     $("#productsList li").each(function(i, li) {
-      productsData += li.innerText.replace('x', '\n');
+      productsData += li.innerText.replace('cancel', '\n');
     });
 
     $('#productsList').remove();
@@ -582,8 +583,6 @@
         let field10 = $("#vehicleRegistrationNumber").val();
         let field11 = $("#trailerRegistrationNumber").val();
 
-        // console.log('productList:::::', field11, productsData)
-
         $.ajax({
           url: "https://docs.google.com/forms/u/0/d/e/1FAIpQLSdAAM6SIzeppaiZVGoq-R5sTA7bt32t5rQj0PiV9gbrmrM5kA/formResponse",
             
@@ -599,7 +598,7 @@
             "entry.1131935088": field9,
             "entry.1723190947": field10,
             "entry.1504241797": field11,
-            "entry.19875189": productsData,
+            "entry.1889613797": productsData,
           },
           type: "POST",
           dataType: "xml",
@@ -614,7 +613,6 @@
       }
     }
   });
-
 </script>
       
   </body>
