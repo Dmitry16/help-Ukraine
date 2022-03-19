@@ -344,29 +344,33 @@
                 <div class="row">
                   <div class="col-md-3">
                     <div class="form-group">
-                      <input type="text" placeholder="Arrival time (9am - 3pm)" id="arrivalTime" class="form-control" required data-error="Please enter arrival time"
-                        name="entry.1131935088" data-name="arrivalTime"
+                      <input type="text" placeholder="Type of product" id="typeProduct" class="form-control" data-error="Please enter type of product"
+                        name="entry.1131935088" data-name="typeProduct"
                       >
                       <div class="help-block with-errors"></div>
                     </div>
                   </div>
                   <div class="col-md-3">
                     <div class="form-group">
-                      <input type="text" placeholder="Vehicle Registration Number" id="vehicleRegistrationNumber" class="form-control" required data-error="Please enter vehicle registration number"
-                        name="entry.1723190947" data-name="vehicleRegistrationNumber"
+                      <input type="text" placeholder="Number of pallets" id="palletsNumber" class="form-control" data-error="Please enter vehicle registration number"
+                        name="entry.1723190947" data-name="palletsNumber"
                       >
                       <div class="help-block with-errors"></div>
                     </div>
                   </div>
                   <div class="col-md-3">
                     <div class="form-group">
-                      <input type="text" placeholder="Trailer Registration Number" id="trailerRegistrationNumber" class="form-control" required data-error="Please enter vehicle registration number"
-                        name="entry.1504241797" data-name="trailerRegistrationNumber"
+                      <input type="text" placeholder="Average weight (kilograms) of one pallet" id="palletWeight" class="form-control" data-error="Please enter vehicle registration number"
+                        name="entry.1504241797" data-name="palletWeight"
                       >
                       <div class="help-block with-errors"></div>
                     </div>
                   </div>
-                  <button class="btn btn-common" id="submit">Add Product</button>
+
+                  <button class="btn btn-common" id="addProduct" onclick="onAddProduct()">Add Product</button>
+
+                  <ul style="z-index: 999;" id="productsList"></ul>
+    
                 </div>
               </section>
 
@@ -527,6 +531,29 @@
     <script src="assets/js/map.js"></script>
 
 <script type="text/javascript">
+
+  function onRemove() {
+    $(document).on("click", ".remove", function() {
+       $(this).parent().remove(); 
+    });  
+  }
+
+  function onAddProduct() {
+    let typeProduct = $("#typeProduct").val();
+    let palletsNumber = $("#palletsNumber").val();
+    let palletWeight = $("#palletWeight").val();
+
+    $('#typeProduct').val('');
+    $('#palletsNumber').val('');
+    $('#palletWeight').val('');
+
+    $('#productsList').append(`
+      <li class="productData">${typeProduct}: ${palletsNumber} pallets, ${palletWeight} kg 1 plt
+        <button class="remove" onclick="onRemove()">cancel</button>
+      </li>
+    `)
+  }
+
   document.getElementById('contactForm').target = 'iframe';
   let iframe = document.getElementById('iframe');
 
@@ -544,31 +571,35 @@
       let field10 = $("#vehicleRegistrationNumber").val();
       let field11 = $("#trailerRegistrationNumber").val();
 
-      $.ajax({
-        url: "https://docs.google.com/forms/u/0/d/e/1FAIpQLSdAAM6SIzeppaiZVGoq-R5sTA7bt32t5rQj0PiV9gbrmrM5kA/formResponse",
+      let field12 = $("#productList").val();
+
+      console.log('productList:::::', field12)
+
+      // $.ajax({
+      //   url: "https://docs.google.com/forms/u/0/d/e/1FAIpQLSdAAM6SIzeppaiZVGoq-R5sTA7bt32t5rQj0PiV9gbrmrM5kA/formResponse",
           
-        data: {
-          "entry.1120286520": field1,
-          "entry.124618937": field2,
-          "entry.2060837920": field3,
-          "entry.299921223": field4,
-          "entry.1048162980": field5,
-          "entry.604989816": field6,
-          "entry.366275644": field7,
-          "entry.1678365072": field8,
-          "entry.1131935088": field9,
-          "entry.1723190947": field10,
-          "entry.1504241797": field11,
-        },
-        type: "POST",
-        dataType: "xml",
-        success: function (d) {
-          $('#contactForm').trigger('reset');
-        },
-        error: function (x, y, z) {
-          $('#contactForm').trigger('reset');
-        }
-      });
+      //   data: {
+      //     "entry.1120286520": field1,
+      //     "entry.124618937": field2,
+      //     "entry.2060837920": field3,
+      //     "entry.299921223": field4,
+      //     "entry.1048162980": field5,
+      //     "entry.604989816": field6,
+      //     "entry.366275644": field7,
+      //     "entry.1678365072": field8,
+      //     "entry.1131935088": field9,
+      //     "entry.1723190947": field10,
+      //     "entry.1504241797": field11,
+      //   },
+      //   type: "POST",
+      //   dataType: "xml",
+      //   success: function (d) {
+      //     $('#contactForm').trigger('reset');
+      //   },
+      //   error: function (x, y, z) {
+      //     $('#contactForm').trigger('reset');
+      //   }
+      // });
       return false;
     }
   }
