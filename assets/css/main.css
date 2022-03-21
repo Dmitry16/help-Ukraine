@@ -1205,3 +1205,6 @@ a:not([href]):not([tabindex]):focus, a:not([href]):not([tabindex]):hover {
   visibility: hidden;
 }
 
+.form-control {
+  height: 40px;
+}
