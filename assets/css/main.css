@@ -1143,3 +1143,65 @@ a:not([href]):not([tabindex]):focus, a:not([href]):not([tabindex]):hover {
   margin: 3px 20px;
   border: 1px solid red;
 }
+
+.logo {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.logo-text {
+  font-size: 34px;
+}
+
+.info-text {
+  font-size: 20px;
+}
+
+@media screen and (max-width: 768px) {
+  .navbar-header {
+    width: 100%;
+  }
+  .info-text {
+    font-size: 16px;
+  }
+  .logo-text {
+    font-size: 24px;
+    padding: 25px 0 3px;
+  }
+  .logo {
+    display: flex;
+    flex-direction: column;
+  }
+  .navbar-brand {
+    position: absolute;
+    padding: 0px 15px;
+    top: 0;
+    left: 150px;
+  }
+  .navbar-brand img {
+    width: 75%;
+  }
+  #mobile-menu {
+    display: none;
+  }
+  .slicknav_menu {
+    display: block;
+  }
+  .slicknav_nav .active a {
+    background: #E91E63;
+    color: #fff;
+  }
+  .slicknav_nav a:hover,
+  .slicknav_nav a:focus,
+  .slicknav_nav .active {
+    color: #00b4d9;
+    outline: none;
+    background: #f8f9fa;
+  }
+}
+
+#iframe {
+  visibility: hidden;
+}
+
