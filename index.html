@@ -343,6 +343,15 @@
                   <div class="help-block with-errors"></div>
                 </div>
               </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label class="label" for="Notes">Notes</label>
+                  <input type="text-area" id="notes" class="form-control"
+                    name="entry.1290381539" data-name="notes"
+                  >
+                  <div class="help-block with-errors"></div>
+                </div>
+              </div>
               
               <div class="row" style="padding: 20px;">
                 <div class="col-md-3">
@@ -577,6 +586,7 @@
         let field9 = $("#arrivalTime").val();
         let field10 = $("#vehicleRegistrationNumber").val();
         let field11 = $("#trailerRegistrationNumber").val();
+        let field13 = $("#notes").val();
 
         $.ajax({
           url: "https://docs.google.com/forms/u/0/d/e/1FAIpQLSdAAM6SIzeppaiZVGoq-R5sTA7bt32t5rQj0PiV9gbrmrM5kA/formResponse",
@@ -594,6 +604,7 @@
             "entry.1723190947": field10,
             "entry.1504241797": field11,
             "entry.1889613797": productsData,
+            "entry.1290381539": field13,
           },
           type: "POST",
           dataType: "xml",
