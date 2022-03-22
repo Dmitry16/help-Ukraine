@@ -1151,7 +1151,7 @@ a:not([href]):not([tabindex]):focus, a:not([href]):not([tabindex]):hover {
 }
 
 .logo-text {
-  font-size: 34px;
+  font-size: 30px;
 }
 
 .info-text {
